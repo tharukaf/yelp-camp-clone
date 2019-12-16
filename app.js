@@ -1,7 +1,8 @@
 var express = require("express");
 var app = express();
+var bodyParser = require("body-parser");
 app.set("view engine", "ejs");
-
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.get("/", function(req, res){
@@ -17,6 +18,16 @@ app.get("/campgrounds", function(req, res){
 	
 	res.render("campgrounds", {campgrounds: campgrounds});
 });
+
+app.get("/campgrounds/new", function(req, res){
+	res.render("new");
+});
+
+app.post("/campgrounds", function(req, res){
+	res.send("you hit the post route");
+});
+
+
 
 app.listen(3000, function(){
 	console.log("Server started at port 3000");
